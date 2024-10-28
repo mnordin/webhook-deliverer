@@ -43,6 +43,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_28_152349) do
     t.index ["webhook_id"], name: "index_webhook_secrets_on_webhook_id"
   end
 
+  create_table "webhook_subscriptions", force: :cascade do |t|
+    t.integer "event", default: 0, null: false
+    t.string "relative_path"
+    t.integer "webhook_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["webhook_id"], name: "index_webhook_subscriptions_on_webhook_id"
+  end
+
   create_table "webhooks", force: :cascade do |t|
     t.string "url", null: false
     t.datetime "created_at", null: false
@@ -52,4 +61,5 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_28_152349) do
   add_foreign_key "users", "departments"
   add_foreign_key "users", "users", column: "manager_id"
   add_foreign_key "webhook_secrets", "webhooks"
+  add_foreign_key "webhook_subscriptions", "webhooks"
 end
