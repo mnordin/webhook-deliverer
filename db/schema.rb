@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_28_152349) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_28_201158) do
   create_table "departments", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -29,6 +29,18 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_28_152349) do
     t.integer "department_id", null: false
     t.index ["department_id"], name: "index_users_on_department_id"
     t.index ["manager_id"], name: "index_users_on_manager_id"
+  end
+
+  create_table "webhook_deliveries", force: :cascade do |t|
+    t.integer "status", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.integer "last_response_code"
+    t.text "last_response"
+    t.json "payload", null: false
+    t.integer "webhook_subscription_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["webhook_subscription_id"], name: "index_webhook_deliveries_on_webhook_subscription_id"
   end
 
   create_table "webhook_secrets", force: :cascade do |t|
@@ -60,6 +72,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_28_152349) do
 
   add_foreign_key "users", "departments"
   add_foreign_key "users", "users", column: "manager_id"
+  add_foreign_key "webhook_deliveries", "webhook_subscriptions"
   add_foreign_key "webhook_secrets", "webhooks"
   add_foreign_key "webhook_subscriptions", "webhooks"
 end
