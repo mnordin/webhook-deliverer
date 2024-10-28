@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_28_150718) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_28_152349) do
   create_table "departments", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -31,6 +31,25 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_28_150718) do
     t.index ["manager_id"], name: "index_users_on_manager_id"
   end
 
+  create_table "webhook_secrets", force: :cascade do |t|
+    t.string "secret", null: false
+    t.boolean "active", default: false, null: false
+    t.datetime "last_used_at"
+    t.integer "webhook_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["webhook_id", "active"], name: "index_webhook_secrets_on_webhook_id_and_active", unique: true, where: "active IS TRUE"
+    t.index ["webhook_id", "secret"], name: "index_webhook_secrets_on_webhook_id_and_secret", unique: true
+    t.index ["webhook_id"], name: "index_webhook_secrets_on_webhook_id"
+  end
+
+  create_table "webhooks", force: :cascade do |t|
+    t.string "url", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "users", "departments"
   add_foreign_key "users", "users", column: "manager_id"
+  add_foreign_key "webhook_secrets", "webhooks"
 end
