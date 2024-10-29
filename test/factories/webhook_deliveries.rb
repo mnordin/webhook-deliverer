@@ -4,6 +4,7 @@ FactoryBot.define do
     attempts { 0 }
     last_response_code { nil }
     last_response { nil }
+    url { "https://example.com/webhooks/profiles" }
     payload {
        { type: "profile_created", data: { id: 1 } }.to_json
     }

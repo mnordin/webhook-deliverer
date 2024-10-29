@@ -37,6 +37,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_28_201158) do
     t.integer "last_response_code"
     t.text "last_response"
     t.json "payload", null: false
+    t.string "url", null: false
     t.integer "webhook_subscription_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

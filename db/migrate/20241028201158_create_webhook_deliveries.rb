@@ -6,6 +6,7 @@ class CreateWebhookDeliveries < ActiveRecord::Migration[7.2]
       t.integer :last_response_code
       t.text :last_response
       t.json :payload, null: false
+      t.string :url, null: false
       t.references :webhook_subscription, null: false, foreign_key: true
 
       t.timestamps
