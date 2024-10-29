@@ -5,7 +5,7 @@ class WebhookSecretTest < ActiveSupport::TestCase
     SecureRandom.stub(:uuid, "123-456-789") do
       webhook_secret = WebhookSecret.new
 
-      assert "123-456-789", webhook_secret.secret
+      assert_equal "123-456-789", webhook_secret.secret
     end
   end
 
@@ -13,7 +13,7 @@ class WebhookSecretTest < ActiveSupport::TestCase
     SecureRandom.stub(:uuid, "123-456-789") do
       webhook_secret = WebhookSecret.new(secret: "foo-bar")
 
-      assert "foo-bar", webhook_secret.secret
+      assert_equal "foo-bar", webhook_secret.secret
     end
   end
 
@@ -22,7 +22,7 @@ class WebhookSecretTest < ActiveSupport::TestCase
     second_active_secret = build(:webhook_secret, :active, webhook: active_secret.webhook)
 
     assert_not second_active_secret.valid?
-    assert second_active_secret.errors[:active], "has already been taken"
+    assert_includes second_active_secret.errors[:active], "has already been taken"
   end
 
   test "allows multiple active secrets for separate webhooks" do
