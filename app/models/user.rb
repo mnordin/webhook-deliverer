@@ -3,4 +3,5 @@ class User < ApplicationRecord
 
   belongs_to :manager, class_name: "User", optional: true
   belongs_to :department
+  has_one :organisation, through: :department
 end

@@ -10,11 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_29_133727) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_29_134502) do
   create_table "departments", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "organisation_id"
+    t.index ["organisation_id"], name: "index_departments_on_organisation_id"
   end
 
   create_table "organisations", force: :cascade do |t|
@@ -77,6 +79,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_29_133727) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "departments", "organisations"
   add_foreign_key "users", "departments"
   add_foreign_key "users", "users", column: "manager_id"
   add_foreign_key "webhook_deliveries", "webhook_subscriptions"
