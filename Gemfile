@@ -41,3 +41,9 @@ group :development, :test do
 
   gem "factory_bot_rails", "~> 6.4"
 end
+
+group :test do
+  gem "webmock", "~> 3.24"
+end
+
+gem "faraday", "~> 2.12"

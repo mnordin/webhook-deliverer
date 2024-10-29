@@ -23,5 +23,12 @@ FactoryBot.define do
       }
       webhook_subscription { build(:webhook_subscription, event: "profile_archived") }
     end
+
+    trait :failed do
+      status { "failure" }
+      attempts { 1 }
+      last_response_code { 500 }
+      last_response { "Internal Server Error" }
+    end
   end
 end
