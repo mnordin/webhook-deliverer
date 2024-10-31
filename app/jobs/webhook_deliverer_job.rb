@@ -2,14 +2,11 @@ class WebhookDelivererJob < ApplicationJob
   class UnsuccessfulDelivery < StandardError; end
   queue_as :default
 
-  def perform(webhook_delivery_id)
-    webhook_delivery = WebhookDelivery.find(webhook_delivery_id)
-
+  def perform(webhook_delivery)
     webhook_delivery.increment!(:attempts)
     response = Webhooks::Deliverer.call(webhook_delivery:)
 
-    case response.status
-    when 200..299
+    if response.success?
       webhook_delivery.update(
         status: "success",
         last_response_code: response.status,

@@ -13,7 +13,7 @@ module Webhooks
 
       webhook_secret&.update(last_used_at: Time.zone.now)
 
-      response
+      Response.new(response)
     end
 
     private
