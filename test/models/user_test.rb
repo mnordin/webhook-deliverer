@@ -97,5 +97,21 @@ class UserTest < ActiveSupport::TestCase
         glottis.save!
       end
     end
+
+    test "it does not enqueue a webhook when the user has no meaningful updates" do
+      organisation = create(:organisation, webhook: build(:webhook))
+      create(:webhook_subscription, event: "profile_updated", webhook: organisation.webhook)
+      department = create(:department, organisation:)
+      glottis = create(
+        :user,
+        name: "Glottis",
+        work_email: "glottis@lucasarts.com",
+        department:,
+      )
+
+      assert_enqueued_jobs 0 do
+        glottis.update(updated_at: Time.zone.now)
+      end
+    end
   end
 end

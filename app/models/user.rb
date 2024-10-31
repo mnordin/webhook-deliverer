@@ -17,8 +17,10 @@ class User < ApplicationRecord
   end
 
   def deliver_profile_updated_webhook
-    if profile_updated_subscription = find_webhook_subscription("profile_updated")
-      Webhooks::ProfileUpdatedWebhookDeliveryJob.perform_later(self, profile_updated_subscription)
+    if (self.previous_changes.keys - [ "updated_at" ]).any?
+      if profile_updated_subscription = find_webhook_subscription("profile_updated")
+        Webhooks::ProfileUpdatedWebhookDeliveryJob.perform_later(self, profile_updated_subscription)
+      end
     end
   end
 
