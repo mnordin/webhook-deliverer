@@ -26,7 +26,7 @@ module Webhooks
       webhook = create(:webhook, url: "https://example.com")
       webhook_subscription = create(:webhook_subscription, relative_path: "/test", webhook:)
 
-      assert_enqueued_jobs 1, only: WebhookDelivererJob do
+      assert_enqueued_jobs 1, only: DelivererJob do
         Webhooks::CreateWebhookDelivery.call(
           webhook_subscription:,
           payload: { foo: "bar" },

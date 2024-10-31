@@ -32,4 +32,39 @@ class UserTest < ActiveSupport::TestCase
     assert_not user.valid?
     assert_includes user.errors[:department], "must exist"
   end
+
+  class Callbacks < ActiveSupport::TestCase
+    include ActiveJob::TestHelper
+
+    test "enqueues a webhook when user is created and has a matching subscription" do
+      subscription = create(:webhook_subscription, event: "profile_created")
+      organisation = create(:organisation, webhook: subscription.webhook)
+      department = create(:department, organisation:)
+      glottis = build(
+        :user,
+        name: "Glottis",
+        work_email: "glottis@lucasarts.com",
+        department:,
+      )
+
+      assert_enqueued_jobs 1, only: Webhooks::ProfileCreatedWebhookDeliveryJob do
+        glottis.save!
+      end
+    end
+
+    test "does not enqueue a webhook when user is created without a matching subscription" do
+      organisation = create(:organisation, :with_webhook)
+      department = create(:department, organisation:)
+      glottis = build(
+        :user,
+        name: "Glottis",
+        work_email: "glottis@lucasarts.com",
+        department:,
+      )
+
+      assert_enqueued_jobs 0 do
+        glottis.save!
+      end
+    end
+  end
 end

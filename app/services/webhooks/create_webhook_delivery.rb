@@ -21,7 +21,7 @@ module Webhooks
         )
       end
 
-      WebhookDelivererJob.perform_later(webhook_delivery)
+      DelivererJob.perform_later(webhook_delivery)
     end
 
     private
