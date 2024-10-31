@@ -6,12 +6,19 @@ class User < ApplicationRecord
   has_one :organisation, through: :department
 
   after_commit :deliver_profile_created_webhook, on: :create
+  after_commit :deliver_profile_updated_webhook, on: :update
 
   private
 
   def deliver_profile_created_webhook
     if profile_created_subscription = find_webhook_subscription("profile_created")
       Webhooks::ProfileCreatedWebhookDeliveryJob.perform_later(self, profile_created_subscription)
+    end
+  end
+
+  def deliver_profile_updated_webhook
+    if profile_updated_subscription = find_webhook_subscription("profile_updated")
+      Webhooks::ProfileUpdatedWebhookDeliveryJob.perform_later(self, profile_updated_subscription)
     end
   end
 

@@ -66,5 +66,36 @@ class UserTest < ActiveSupport::TestCase
         glottis.save!
       end
     end
+
+    test "enqueues a webhook when user is updated and has a matching subscription" do
+      organisation = create(:organisation, webhook: build(:webhook))
+      create(:webhook_subscription, event: "profile_updated", webhook: organisation.webhook)
+      department = create(:department, organisation:)
+      glottis = create(
+        :user,
+        name: "Glottis",
+        work_email: "glottis@lucasarts.com",
+        department:,
+      )
+
+      assert_enqueued_jobs 1, only: Webhooks::ProfileUpdatedWebhookDeliveryJob do
+        glottis.update(job_title: "Pianist")
+      end
+    end
+
+    test "does not enqueue a webhook when user is updated without a matching subscription" do
+      organisation = create(:organisation, :with_webhook)
+      department = create(:department, organisation:)
+      glottis = build(
+        :user,
+        name: "Glottis",
+        work_email: "glottis@lucasarts.com",
+        department:,
+      )
+
+      assert_enqueued_jobs 0 do
+        glottis.save!
+      end
+    end
   end
 end
