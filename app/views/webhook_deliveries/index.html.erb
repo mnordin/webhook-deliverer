@@ -1,0 +1,17 @@
+<h1>Webhook deliveries</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Status</th>
+    <th>Url</th>
+    <th>Response code</th>
+    <th>Response</th>
+    <th>Payload</th>
+  </tr>
+
+  <% @webhook_deliveries.each do |webhook_delivery| %>
+    <%= render "webhook_delivery", webhook_delivery: %>
+  <% end %>
+
+</table>

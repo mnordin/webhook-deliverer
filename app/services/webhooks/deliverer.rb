@@ -39,7 +39,7 @@ module Webhooks
     end
 
     def webhook_secret
-      webhook.webhook_secrets.active.first
+      @webhook_secret ||= webhook.webhook_secrets.active.first
     end
 
     def url
