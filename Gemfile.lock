@@ -123,6 +123,10 @@ GEM
     hashdiff (1.1.1)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
+    importmap-rails (2.0.3)
+      actionpack (>= 6.0.0)
+      activesupport (>= 6.0.0)
+      railties (>= 6.0.0)
     io-console (0.7.2)
     irb (1.14.1)
       rdoc (>= 4.0.0)
@@ -171,6 +175,11 @@ GEM
     parser (3.3.5.0)
       ast (~> 2.4.1)
       racc
+    propshaft (0.9.1)
+      actionpack (>= 7.0.0)
+      activesupport (>= 7.0.0)
+      rack
+      railties (>= 7.0.0)
     psych (5.1.2)
       stringio
     public_suffix (6.0.1)
@@ -271,6 +280,15 @@ GEM
     sqlite3 (2.2.0-x86_64-linux-gnu)
     sqlite3 (2.2.0-x86_64-linux-musl)
     stringio (3.1.1)
+    tailwindcss-rails (3.0.0)
+      railties (>= 7.0.0)
+      tailwindcss-ruby
+    tailwindcss-ruby (3.4.14)
+    tailwindcss-ruby (3.4.14-aarch64-linux)
+    tailwindcss-ruby (3.4.14-arm-linux)
+    tailwindcss-ruby (3.4.14-arm64-darwin)
+    tailwindcss-ruby (3.4.14-x86_64-darwin)
+    tailwindcss-ruby (3.4.14-x86_64-linux)
     thor (1.3.2)
     timeout (0.4.1)
     tzinfo (2.0.6)
@@ -311,11 +329,14 @@ DEPENDENCIES
   debug
   factory_bot_rails (~> 6.4)
   faraday (~> 2.12)
+  importmap-rails (~> 2.0)
+  propshaft (~> 0.9)
   puma (>= 5.0)
   rails (>= 8.0.0.rc2)
   rubocop-rails-omakase
   solid_queue (~> 1.0)
   sqlite3 (>= 1.4)
+  tailwindcss-rails (~> 3.0)
   tzinfo-data
   webmock (~> 3.24)
 
