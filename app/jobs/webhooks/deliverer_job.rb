@@ -1,7 +1,9 @@
 module Webhooks
   class DelivererJob < ApplicationJob
     class UnsuccessfulDelivery < StandardError; end
-    queue_as :default
+
+    retry_on UnsuccessfulDelivery, wait: :polynomially_longer, attempts: 10
+    queue_as :webhook_deliveries
 
     def perform(webhook_delivery)
       webhook_delivery.increment!(:attempts)
