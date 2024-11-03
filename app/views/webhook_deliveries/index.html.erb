@@ -1,17 +1,34 @@
-<h1>Webhook deliveries</h1>
+<div class="w-full mb-12 xl:mb-0 px-4 mx-auto">
+  <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded bg-slate-100">
+    <div class="rounded-t mb-0 px-4 py-3 border-0">
+      <div class="flex flex-wrap items-center">
+        <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+          <h1 class="font-semibold text-base text-blueGray-700 text-4xl">Webhook deliveries</h1>
+        </div>
+      </div>
+    </div>
 
-<table>
-  <tr>
-    <th>Id</th>
-    <th>Status</th>
-    <th>Url</th>
-    <th>Response code</th>
-    <th>Response</th>
-    <th>Payload</th>
-  </tr>
+    <div class="block w-full overflow-x-auto">
+      <table class="items-center bg-transparent w-full border-collapse ">
+        <thead>
+          <tr>
+            <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Id</th>
+            <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Status</th>
+            <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Url</th>
+            <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Attempts</th>
+            <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Response code</th>
+            <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Response</th>
+            <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Payload</th>
+          </tr>
+        </thead>
 
-  <% @webhook_deliveries.each do |webhook_delivery| %>
-    <%= render "webhook_delivery", webhook_delivery: %>
-  <% end %>
-
-</table>
+        <tbody class="bg-white mx-auto max-w-screen-xl">
+          <% @webhook_deliveries.each do |webhook_delivery| %>
+            <%= render "webhook_delivery", webhook_delivery: %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</section>

@@ -1,8 +1,21 @@
-<tr>
-  <td><%= webhook_delivery.id %></td>
-  <td><%= webhook_delivery.status %></td>
-  <td><%= webhook_delivery.url %></td>
-  <td><%= webhook_delivery.last_response_code %></td>
-  <td><%= webhook_delivery.last_response %></td>
-  <td><%= webhook_delivery.payload %></td>
+<%
+  # TODO: Extract this into a view component or presenter
+  background_color = case webhook_delivery.status
+                     when "failure"
+                       "bg-red-200"
+                     when "success"
+                       "bg-green-200"
+                     else
+                       "bg-slate-200"
+                     end
+%>
+
+<tr class="<%= background_color %>">
+  <td class="border-t-0 px-6 border-l-0 border-r-0 text-xs whitespace-nowrap p-4"><%= webhook_delivery.id %></td>
+  <td class="border-t-0 px-6 border-l-0 border-r-0 text-xs whitespace-nowrap p-4"><%= webhook_delivery.status %></td>
+  <td class="border-t-0 px-6 border-l-0 border-r-0 text-xs whitespace-nowrap p-4"><%= webhook_delivery.url %></td>
+  <td class="border-t-0 px-6 border-l-0 border-r-0 text-xs whitespace-nowrap p-4"><%= webhook_delivery.attempts %></td>
+  <td class="border-t-0 px-6 border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-mono"><%= webhook_delivery.last_response_code %></td>
+  <td class="border-t-0 px-6 border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-mono"><%= webhook_delivery.last_response %></td>
+  <td class="border-t-0 px-6 border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-mono"><%= webhook_delivery.payload %></td>
 </tr>
