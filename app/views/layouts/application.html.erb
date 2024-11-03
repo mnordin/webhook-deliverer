@@ -1,55 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8" />
-  <title><%= @page_title %></title>
-  <style>
-    body { background-color: #fff; color: #333; }
+  <head>
+    <title><%= content_for(:title) || "WebhookDeliverer" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-    body, p, ol, ul, td {
-      font-family: helvetica, verdana, arial, sans-serif;
-      font-size:   13px;
-      line-height: 18px;
-    }
+    <%= yield :head %>
 
-    pre {
-      background-color: #eee;
-      padding: 10px;
-      font-size: 11px;
-      white-space: pre-wrap;
-    }
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
-    a { color: #000; }
-    a:visited { color: #666; }
-    a:hover { color: #fff; background-color:#000; }
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
 
-    h2 { padding-left: 10px; }
-
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #222;
-        color: #ececec;
-      }
-
-      pre {
-        background-color: #333;
-      }
-
-      a { color: #fff; }
-      a:visited { color: #999; }
-      a:hover { color: #000; background-color: #fff; }
-    }
-
-    <%= yield :style %>
-  </style>
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <%= stylesheet_link_tag "application" %>
-</head>
-<body>
-    <main class="container mx-auto mt-10 px-5 flex max-w-screen-xl">
+  </head>
 
-<%= yield %>
+  <body>
+    <main class="container mx-auto mt-12 flex">
+      <%= yield %>
     </main>
-
-</body>
+  </body>
 </html>
