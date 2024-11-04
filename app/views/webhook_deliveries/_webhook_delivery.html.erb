@@ -11,11 +11,11 @@
 %>
 
 <tr class="<%= background_color %>">
-  <td class="border-t-0 px-6 border-l-0 border-r-0 text-xs whitespace-nowrap p-4"><%= webhook_delivery.id %></td>
-  <td class="border-t-0 px-6 border-l-0 border-r-0 text-xs whitespace-nowrap p-4"><%= webhook_delivery.status %></td>
-  <td class="border-t-0 px-6 border-l-0 border-r-0 text-xs whitespace-nowrap p-4"><%= webhook_delivery.url %></td>
-  <td class="border-t-0 px-6 border-l-0 border-r-0 text-xs whitespace-nowrap p-4"><%= webhook_delivery.attempts %></td>
-  <td class="border-t-0 px-6 border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-mono"><%= webhook_delivery.last_response_code %></td>
-  <td class="border-t-0 px-6 border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-mono"><%= webhook_delivery.last_response %></td>
-  <td class="border-t-0 px-6 border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-mono"><%= webhook_delivery.payload %></td>
+  <td class="cell-condensed whitespace-nowrap"><%= webhook_delivery.id %></td>
+  <td class="cell-condensed whitespace-nowrap"><%= webhook_delivery.status %></td>
+  <td class="cell-condensed whitespace-nowrap"><%= webhook_delivery.url %></td>
+  <td class="cell-condensed whitespace-nowrap"><%= webhook_delivery.attempts %></td>
+  <td class="cell-condensed whitespace-nowrap font-mono"><%= webhook_delivery.last_response_code %></td>
+  <td class="cell-condensed whitespace-nowrap font-mono"><%= webhook_delivery.last_response %></td>
+  <td class="cell-condensed whitespace-nowrap font-mono"><%= webhook_delivery.payload %></td>
 </tr>
