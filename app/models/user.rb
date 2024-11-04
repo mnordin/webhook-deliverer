@@ -25,6 +25,9 @@ class User < ApplicationRecord
   end
 
   def find_webhook_subscription(event_name)
-    organisation&.webhook&.webhook_subscriptions&.find_by(event: event_name)
+    WebhookSubscription.
+      joins(webhook: { organisation: :departments }).
+      where(departments: { id: department_id }).
+      find_by(event: event_name)
   end
 end
