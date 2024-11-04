@@ -10,12 +10,12 @@
                      end
 %>
 
-<tr class="<%= background_color %>">
-  <td class="cell-condensed whitespace-nowrap"><%= webhook_delivery.id %></td>
-  <td class="cell-condensed whitespace-nowrap"><%= webhook_delivery.status %></td>
-  <td class="cell-condensed whitespace-nowrap"><%= webhook_delivery.url %></td>
-  <td class="cell-condensed whitespace-nowrap"><%= webhook_delivery.attempts %></td>
-  <td class="cell-condensed whitespace-nowrap font-mono"><%= webhook_delivery.last_response_code %></td>
-  <td class="cell-condensed whitespace-nowrap font-mono"><%= webhook_delivery.last_response %></td>
-  <td class="cell-condensed whitespace-nowrap font-mono"><%= webhook_delivery.payload %></td>
+<tr class="<%= background_color %>" data-controller="expandable" data-expandable-collapsed-class="whitespace-nowrap" data-action="click->expandable#expand">
+  <td class="cell-condensed whitespace-nowrap" data-expandable-target="expandable"><%= webhook_delivery.id %></td>
+  <td class="cell-condensed whitespace-nowrap" data-expandable-target="expandable"><%= webhook_delivery.status %></td>
+  <td class="cell-condensed whitespace-nowrap" data-expandable-target="expandable"><%= webhook_delivery.url %></td>
+  <td class="cell-condensed whitespace-nowrap" data-expandable-target="expandable"><%= webhook_delivery.attempts %></td>
+  <td class="cell-condensed font-mono whitespace-nowrap" data-expandable-target="expandable"><%= webhook_delivery.last_response_code %></td>
+  <td class="cell-condensed font-mono whitespace-nowrap" data-expandable-target="expandable"><%= webhook_delivery.last_response %></td>
+  <td class="cell-condensed font-mono whitespace-nowrap" data-expandable-target="expandable"><%= webhook_delivery.payload %></td>
 </tr>
