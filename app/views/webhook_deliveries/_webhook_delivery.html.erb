@@ -1,0 +1,21 @@
+<%
+  # TODO: Extract this into a view component or presenter
+  background_color = case webhook_delivery.status
+                     when "failure"
+                       "bg-red-200"
+                     when "success"
+                       "bg-green-200"
+                     else
+                       "bg-slate-200"
+                     end
+%>
+
+<tr class="<%= background_color %>" data-controller="expandable" data-expandable-collapsed-class="whitespace-nowrap" data-action="click->expandable#expand">
+  <td class="cell-condensed whitespace-nowrap" data-expandable-target="expandable"><%= webhook_delivery.id %></td>
+  <td class="cell-condensed whitespace-nowrap" data-expandable-target="expandable"><%= webhook_delivery.status %></td>
+  <td class="cell-condensed whitespace-nowrap" data-expandable-target="expandable"><%= webhook_delivery.url %></td>
+  <td class="cell-condensed whitespace-nowrap" data-expandable-target="expandable"><%= webhook_delivery.attempts %></td>
+  <td class="cell-condensed font-mono whitespace-nowrap" data-expandable-target="expandable"><%= webhook_delivery.last_response_code %></td>
+  <td class="cell-condensed font-mono whitespace-nowrap" data-expandable-target="expandable"><%= webhook_delivery.last_response %></td>
+  <td class="cell-condensed font-mono whitespace-nowrap" data-expandable-target="expandable"><%= webhook_delivery.payload %></td>
+</tr>

@@ -1,0 +1,34 @@
+<div class="w-full mb-12 xl:mb-0 px-4 mx-auto">
+  <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded bg-slate-100">
+    <div class="rounded-t mb-0 px-4 py-3 border-0">
+      <div class="flex flex-wrap items-center">
+        <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+          <h1 class="font-semibold text-base text-blueGray-700 text-4xl">Webhook deliveries</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="block w-full overflow-x-auto">
+      <table class="items-center bg-transparent w-full border-collapse">
+        <thead>
+          <tr>
+            <th class="cellheader-condensed">Id</th>
+            <th class="cellheader-condensed">Status</th>
+            <th class="cellheader-condensed">Url</th>
+            <th class="cellheader-condensed">Attempts</th>
+            <th class="cellheader-condensed">Response code</th>
+            <th class="cellheader-condensed">Response</th>
+            <th class="cellheader-condensed">Payload</th>
+          </tr>
+        </thead>
+
+        <tbody class="bg-white mx-auto max-w-screen-xl">
+          <% @webhook_deliveries.each do |webhook_delivery| %>
+            <%= render "webhook_delivery", webhook_delivery: %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</section>

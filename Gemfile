@@ -29,6 +29,9 @@ gem "bootsnap", require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
 
+# Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
+gem "thruster", require: false
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -42,6 +45,11 @@ group :development, :test do
   gem "factory_bot_rails", "~> 6.4"
 end
 
+group :development do
+  # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem "web-console"
+end
+
 group :test do
   gem "webmock", "~> 3.24"
 end
@@ -49,5 +57,10 @@ end
 gem "active_model_serializers", "~> 0.10.14"
 
 gem "faraday", "~> 2.12"
-
 gem "solid_queue", "~> 1.0"
+
+gem "tailwindcss-rails", "~> 3.0"
+gem "importmap-rails", "~> 2.0"
+gem "propshaft", "~> 0.9"
+
+gem "stimulus-rails", "~> 1.3"
