@@ -10,6 +10,5 @@ class CreateWebhookSecrets < ActiveRecord::Migration[7.2]
     end
 
     add_index :webhook_secrets, [ :webhook_id, :secret ], unique: true
-    add_index :webhook_secrets, [ :webhook_id, :active ], where: "active IS TRUE", unique: true
   end
 end

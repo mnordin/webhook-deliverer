@@ -59,7 +59,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_02_114058) do
     t.integer "webhook_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["webhook_id", "active"], name: "index_webhook_secrets_on_webhook_id_and_active", unique: true, where: "active IS TRUE"
     t.index ["webhook_id", "secret"], name: "index_webhook_secrets_on_webhook_id_and_secret", unique: true
     t.index ["webhook_id"], name: "index_webhook_secrets_on_webhook_id"
   end
