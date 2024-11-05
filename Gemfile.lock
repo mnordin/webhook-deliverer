@@ -176,7 +176,7 @@ GEM
     parser (3.3.5.0)
       ast (~> 2.4.1)
       racc
-    propshaft (0.9.1)
+    propshaft (1.1.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
       rack
@@ -193,9 +193,8 @@ GEM
       rack (>= 3.0.0)
     rack-test (2.1.0)
       rack (>= 1.3)
-    rackup (2.1.0)
+    rackup (2.2.0)
       rack (>= 3)
-      webrick (~> 1.8)
     rails (8.0.0.rc2)
       actioncable (= 8.0.0.rc2)
       actionmailbox (= 8.0.0.rc2)
@@ -313,7 +312,6 @@ GEM
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    webrick (1.8.2)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -343,7 +341,7 @@ DEPENDENCIES
   factory_bot_rails (~> 6.4)
   faraday (~> 2.12)
   importmap-rails (~> 2.0)
-  propshaft (~> 0.9)
+  propshaft (~> 1.1)
   puma (>= 5.0)
   rails (>= 8.0.0.rc2)
   rubocop-rails-omakase
