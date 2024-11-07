@@ -10,16 +10,11 @@ module Webhooks
     end
 
     def call
-      webhook_delivery = nil
-
-      # Avoid race condition when trying to deliver the webhook
-      WebhookDelivery.transaction do
-        webhook_delivery = WebhookDelivery.create!(
-          webhook_subscription:,
-          url:,
-          payload: payload.to_json,
-        )
-      end
+      webhook_delivery = WebhookDelivery.create!(
+        webhook_subscription:,
+        url:,
+        payload: payload.to_json,
+      )
 
       DelivererJob.perform_later(webhook_delivery)
     end
