@@ -10,6 +10,13 @@ FactoryBot.define do
     }
     webhook_subscription { build(:webhook_subscription, event: "profile_created") }
 
+    trait :success do
+      status { "success" }
+      attempts { 1 }
+      last_response_code { 200 }
+      last_response { "{success: true}" }
+    end
+
     trait :profile_updated do
       payload {
         { type: "profile_updated", data: { id: 1 } }.to_json

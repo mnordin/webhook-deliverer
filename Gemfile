@@ -64,3 +64,5 @@ gem "importmap-rails", "~> 2.1"
 gem "propshaft", "~> 1.1"
 
 gem "stimulus-rails", "~> 1.3"
+
+gem "view_component", "~> 3.21"

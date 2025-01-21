@@ -24,7 +24,7 @@
 
         <tbody class="bg-white mx-auto max-w-screen-xl">
           <% @webhook_deliveries.each do |webhook_delivery| %>
-            <%= render "webhook_delivery", webhook_delivery: %>
+            <%= render WebhookDeliveryComponent.new(webhook_delivery:) %>
           <% end %>
         </tbody>
       </table>
