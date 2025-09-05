@@ -110,7 +110,7 @@ GEM
     factory_bot_rails (6.4.4)
       factory_bot (~> 6.5)
       railties (>= 5.0.0)
-    faraday (2.12.2)
+    faraday (2.13.1)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
@@ -133,10 +133,10 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    json (2.9.0)
+    json (2.11.3)
     jsonapi-renderer (0.2.2)
     language_server-protocol (3.17.0.3)
-    logger (1.6.5)
+    logger (1.7.0)
     loofah (2.24.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -315,7 +315,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.6.0)
-    uri (1.0.2)
+    uri (1.0.3)
     useragent (0.16.11)
     web-console (4.2.1)
       actionview (>= 6.0.0)
@@ -353,7 +353,7 @@ DEPENDENCIES
   brakeman
   debug
   factory_bot_rails (~> 6.4)
-  faraday (~> 2.12)
+  faraday (~> 2.13)
   importmap-rails (~> 2.1)
   propshaft (~> 1.1)
   puma (>= 5.0)
