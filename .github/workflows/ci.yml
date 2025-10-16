@@ -3,7 +3,7 @@ name: CI
 on:
   pull_request:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   scan_ruby:
@@ -11,12 +11,16 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+
+      - name: Get Ruby version from .tool-versions
+        id: ruby-version
+        run: echo "ruby_version=$(grep -e '^ruby' .tool-versions | awk '{print $2}')" >> $GITHUB_OUTPUT
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
+          ruby-version: ${{ steps.ruby-version.outputs.ruby_version }}
           bundler-cache: true
 
       - name: Scan for common Rails security vulnerabilities using static analysis
@@ -26,12 +30,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+
+      - name: Get Ruby version from .tool-versions
+        id: ruby-version
+        run: echo "ruby_version=$(grep -e '^ruby' .tool-versions | awk '{print $2}')" >> $GITHUB_OUTPUT
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
+          ruby-version: ${{ steps.ruby-version.outputs.ruby_version }}
           bundler-cache: true
 
       - name: Lint code for consistent style
@@ -51,12 +59,16 @@ jobs:
         run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable curl libjemalloc2 libvips sqlite3
 
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+
+      - name: Get Ruby version from .tool-versions
+        id: ruby-version
+        run: echo "ruby_version=$(grep -e '^ruby' .tool-versions | awk '{print $2}')" >> $GITHUB_OUTPUT
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
+          ruby-version: ${{ steps.ruby-version.outputs.ruby_version }}
           bundler-cache: true
 
       - name: Run tests
