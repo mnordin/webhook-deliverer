@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+/* This reference directive allows using utilities with @apply */
+@reference {
+  @import "tailwindcss";
+}
+
+/*
+@layer components {
+  .btn-primary {
+    @apply py-2 px-4 bg-blue-200;
+  }
+}
+*/
+
+@layer components {
+  .cellheader-condensed {
+    @apply p-4 align-middle border border-solid pt-3 pb-3 text-xs uppercase border-s-0 border-e-0 whitespace-nowrap font-semibold text-left;
+  }
+  .cell-condensed {
+    @apply text-xs border-s-0 border-e-0 p-4 max-w-2xl overflow-hidden text-ellipsis;
+  }
+}
