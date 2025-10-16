@@ -3,7 +3,7 @@ name: CI
 on:
   pull_request:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   scan_ruby:
@@ -13,10 +13,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
+      - name: Get Ruby version from .tool-versions
+        id: ruby-version
+        run: echo "ruby_version=$(grep -e '^ruby' .tool-versions | awk '{print $2}')" >> $GITHUB_OUTPUT
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
+          ruby-version: ${{ steps.ruby-version.outputs.ruby_version }}
           bundler-cache: true
 
       - name: Scan for common Rails security vulnerabilities using static analysis
@@ -28,10 +32,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
+      - name: Get Ruby version from .tool-versions
+        id: ruby-version
+        run: echo "ruby_version=$(grep -e '^ruby' .tool-versions | awk '{print $2}')" >> $GITHUB_OUTPUT
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
+          ruby-version: ${{ steps.ruby-version.outputs.ruby_version }}
           bundler-cache: true
 
       - name: Lint code for consistent style
@@ -53,10 +61,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
+      - name: Get Ruby version from .tool-versions
+        id: ruby-version
+        run: echo "ruby_version=$(grep -e '^ruby' .tool-versions | awk '{print $2}')" >> $GITHUB_OUTPUT
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
+          ruby-version: ${{ steps.ruby-version.outputs.ruby_version }}
           bundler-cache: true
 
       - name: Run tests
