@@ -51,7 +51,7 @@ group :development do
 end
 
 group :test do
-  gem "webmock", "~> 3.25"
+  gem "webmock", "~> 3.26"
 end
 
 gem "active_model_serializers", "~> 0.10.15"
