@@ -54,7 +54,7 @@ group :test do
   gem "webmock", "~> 3.26"
 end
 
-gem "active_model_serializers", "~> 0.10.15"
+gem "active_model_serializers", "~> 0.10.16"
 
 gem "faraday", "~> 2.14"
 gem "solid_queue", "~> 1.2"
