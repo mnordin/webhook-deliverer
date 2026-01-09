@@ -52,6 +52,8 @@ end
 
 group :test do
   gem "webmock", "~> 3.26"
+  gem "minitest", "~> 6.0"
+  gem "minitest-mock", "~> 5.2"
 end
 
 gem "active_model_serializers", "~> 0.10.16"
