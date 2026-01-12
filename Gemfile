@@ -59,7 +59,7 @@ end
 gem "active_model_serializers", "~> 0.10.16"
 
 gem "faraday", "~> 2.14"
-gem "solid_queue", "~> 1.2"
+gem "solid_queue", "~> 1.3"
 
 gem "tailwindcss-rails", "~> 4.4"
 gem "importmap-rails", "~> 2.2"
