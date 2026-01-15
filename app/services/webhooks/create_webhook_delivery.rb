@@ -13,7 +13,7 @@ module Webhooks
       webhook_delivery = WebhookDelivery.create!(
         webhook_subscription:,
         url:,
-        payload: payload.to_json,
+        payload: payload.to_json
       )
 
       DelivererJob.perform_later(webhook_delivery)

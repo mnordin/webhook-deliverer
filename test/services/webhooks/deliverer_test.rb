@@ -17,7 +17,7 @@ module Webhooks
     test "it can deliver a webhook successfully" do
       stub_request_id_and_time do
         webhook_delivery = create(:webhook_delivery, url: "https://example.com/webhooks?foo=bar")
-        response_body = { status: "success" }.to_json
+        response_body = {status: "success"}.to_json
 
         request = stub_request(:post, webhook_delivery.url).with(
           body: webhook_delivery.payload,
@@ -46,7 +46,7 @@ module Webhooks
       request_stub = Minitest::Mock.new.expect(
         :post,
         faraday_response,
-        [ webhook_delivery.url, webhook_delivery.payload ],
+        [webhook_delivery.url, webhook_delivery.payload]
       )
 
       deliverer = Deliverer.new(webhook_delivery:)
@@ -62,10 +62,9 @@ module Webhooks
       stub_request_id_and_time do
         webhook_delivery = create(:webhook_delivery, url: "https://example.com/webhooks?bar=baz")
         create(:webhook_secret,
-        webhook: webhook_delivery.webhook_subscription.webhook,
-        active: true,
-        secret: "shared-secret",
-      )
+          webhook: webhook_delivery.webhook_subscription.webhook,
+          active: true,
+          secret: "shared-secret")
 
         stub = stub_request(:post, webhook_delivery.url).with(
           body: webhook_delivery.payload,
@@ -94,12 +93,12 @@ module Webhooks
           :webhook_secret,
           webhook: webhook_delivery.webhook_subscription.webhook,
           active: true,
-          last_used_at: nil,
+          last_used_at: nil
         )
         request_stub = Minitest::Mock.new.expect(
           :post,
           Faraday::Response.new,
-          [ webhook_delivery.url, webhook_delivery.payload ],
+          [webhook_delivery.url, webhook_delivery.payload]
         )
 
         deliverer = Deliverer.new(webhook_delivery:)
@@ -119,7 +118,7 @@ module Webhooks
           :webhook_secret,
           webhook: webhook_delivery.webhook_subscription.webhook,
           active: false,
-          secret: "shared-secret",
+          secret: "shared-secret"
         )
 
         stub = stub_request(:post, webhook_delivery.url).with(

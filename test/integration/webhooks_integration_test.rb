@@ -11,7 +11,7 @@ class WebhooksIntegrationTest < ActionDispatch::IntegrationTest
         :webhook_subscription,
         webhook:,
         event: "profile_created",
-        relative_path: "/bar",
+        relative_path: "/bar"
       )
       secret = create(:webhook_secret, :active, webhook:, secret: "static-secret")
       guybrush = build(
@@ -22,7 +22,7 @@ class WebhooksIntegrationTest < ActionDispatch::IntegrationTest
         job_title: "Swashbuckling Pirate",
         first_day_of_work: "2024-10-31",
         manager: manny,
-        department:,
+        department:
       )
       expected_payload = {
         type: "profile_created",
@@ -53,7 +53,7 @@ class WebhooksIntegrationTest < ActionDispatch::IntegrationTest
           "X-Signature" => "0e3dc1e17c43939bca0ac13cac9753460e3db05eb445073bdd91e53afcc877df",
           "X-Timestamp" => Time.zone.now.to_i.to_s
         }
-      ).to_return(status: 200, body: { status: "success" }.to_json)
+      ).to_return(status: 200, body: {status: "success"}.to_json)
 
       perform_enqueued_jobs do
         guybrush.save!
@@ -64,7 +64,7 @@ class WebhooksIntegrationTest < ActionDispatch::IntegrationTest
         {
           status: "success",
           last_response_code: 200,
-          last_response: { status: "success" }.to_json,
+          last_response: {status: "success"}.to_json,
           attempts: 1,
           url: expected_url
         }.with_indifferent_access,
@@ -86,7 +86,7 @@ class WebhooksIntegrationTest < ActionDispatch::IntegrationTest
         :webhook_subscription,
         webhook:,
         event: "profile_updated",
-        relative_path: "/baz",
+        relative_path: "/baz"
       )
       secret = create(:webhook_secret, :active, webhook:, secret: "static-secret")
       glottis = create(
@@ -97,7 +97,7 @@ class WebhooksIntegrationTest < ActionDispatch::IntegrationTest
         job_title: "Mechanic",
         first_day_of_work: "2024-06-01",
         manager: manny,
-        department:,
+        department:
       )
       expected_payload = {
         type: "profile_updated",
@@ -127,7 +127,7 @@ class WebhooksIntegrationTest < ActionDispatch::IntegrationTest
           "X-Signature" => "f4fc57d081bb7ee7b9bf983f5e16f8bd144d6db2b860a61439b3b8b904edd5fe",
           "X-Timestamp" => Time.zone.now.to_i.to_s
         }
-      ).to_return(status: 202, body: { updated: true }.to_json)
+      ).to_return(status: 202, body: {updated: true}.to_json)
 
       perform_enqueued_jobs do
         glottis.update!(job_title: "Pianist")
@@ -138,7 +138,7 @@ class WebhooksIntegrationTest < ActionDispatch::IntegrationTest
         {
           status: "success",
           last_response_code: 202,
-          last_response: { updated: true }.to_json,
+          last_response: {updated: true}.to_json,
           attempts: 1,
           url: expected_url
         }.with_indifferent_access,

@@ -5,6 +5,6 @@ class WebhookSecret < ApplicationRecord
 
   scope :active, -> { where(active: true) }
 
-  validates :secret, presence: true, uniqueness: { scope: :webhook_id }
-  validates :active, uniqueness: { scope: :webhook_id }, if: :active?
+  validates :secret, presence: true, uniqueness: {scope: :webhook_id}
+  validates :active, uniqueness: {scope: :webhook_id}, if: :active?
 end

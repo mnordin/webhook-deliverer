@@ -13,13 +13,13 @@ module Webhooks
         webhook_delivery.update(
           status: "success",
           last_response_code: response.status,
-          last_response: response.body,
+          last_response: response.body
         )
       else
         webhook_delivery.update(
           status: "failure",
           last_response_code: response.status,
-          last_response: response.body,
+          last_response: response.body
         )
 
         # Re-enqueue the job for all delivery failures

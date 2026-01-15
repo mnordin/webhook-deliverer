@@ -11,7 +11,7 @@ class ProfileSerializerTest < ActiveSupport::TestCase
         personal_email: "manny@gmail.com",
         job_title: "Entrepreneur",
         first_day_of_work: "2024-06-01",
-        manager: glottis,
+        manager: glottis
       )
 
       profile = Webhooks::ProfileSerializer.new(manny).as_json

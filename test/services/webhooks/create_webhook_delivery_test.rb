@@ -11,14 +11,14 @@ module Webhooks
       assert_difference "WebhookDelivery.count", 1 do
         Webhooks::CreateWebhookDelivery.call(
           webhook_subscription:,
-          payload: { foo: "bar" },
+          payload: {foo: "bar"}
         )
       end
 
       delivery = WebhookDelivery.last
       assert_equal delivery.status, "pending"
       assert_equal delivery.url, "https://example.com/test"
-      assert_equal delivery.payload, { foo: "bar" }.to_json
+      assert_equal delivery.payload, {foo: "bar"}.to_json
       assert_equal delivery.webhook_subscription, webhook_subscription
     end
 
@@ -29,7 +29,7 @@ module Webhooks
       assert_enqueued_jobs 1, only: DelivererJob do
         Webhooks::CreateWebhookDelivery.call(
           webhook_subscription:,
-          payload: { foo: "bar" },
+          payload: {foo: "bar"}
         )
       end
     end

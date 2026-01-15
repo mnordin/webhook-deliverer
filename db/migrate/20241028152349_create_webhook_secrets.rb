@@ -9,6 +9,6 @@ class CreateWebhookSecrets < ActiveRecord::Migration[7.2]
       t.timestamps
     end
 
-    add_index :webhook_secrets, [ :webhook_id, :secret ], unique: true
+    add_index :webhook_secrets, [:webhook_id, :secret], unique: true
   end
 end

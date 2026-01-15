@@ -44,7 +44,7 @@ class UserTest < ActiveSupport::TestCase
         :user,
         name: "Glottis",
         work_email: "glottis@lucasarts.com",
-        department:,
+        department:
       )
 
       assert_enqueued_jobs 1, only: Webhooks::ProfileCreatedWebhookDeliveryJob do
@@ -59,7 +59,7 @@ class UserTest < ActiveSupport::TestCase
         :user,
         name: "Glottis",
         work_email: "glottis@lucasarts.com",
-        department:,
+        department:
       )
 
       assert_enqueued_jobs 0 do
@@ -75,7 +75,7 @@ class UserTest < ActiveSupport::TestCase
         :user,
         name: "Glottis",
         work_email: "glottis@lucasarts.com",
-        department:,
+        department:
       )
 
       assert_enqueued_jobs 1, only: Webhooks::ProfileUpdatedWebhookDeliveryJob do
@@ -90,7 +90,7 @@ class UserTest < ActiveSupport::TestCase
         :user,
         name: "Glottis",
         work_email: "glottis@lucasarts.com",
-        department:,
+        department:
       )
 
       assert_enqueued_jobs 0 do
@@ -106,7 +106,7 @@ class UserTest < ActiveSupport::TestCase
         :user,
         name: "Glottis",
         work_email: "glottis@lucasarts.com",
-        department:,
+        department:
       )
 
       assert_enqueued_jobs 0 do

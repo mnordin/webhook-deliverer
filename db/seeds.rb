@@ -17,7 +17,7 @@ User.find_or_create_by!(
   work_email: "manny@lucasarts.com",
   personal_email: "manny@gmail.com",
   job_title: "Entrepreneur",
-  department: department_of_death,
+  department: department_of_death
 )
 
 User.find_or_create_by!(
@@ -26,7 +26,7 @@ User.find_or_create_by!(
   personal_email: "glottis@gmail.com",
   job_title: "Mechanic",
   department: department_of_death,
-  manager: User.find_by!(name: "Manny Calavera"),
+  manager: User.find_by!(name: "Manny Calavera")
 )
 
 monkey_island = Department.find_or_create_by!(name: "Monkey Island", organisation:)
@@ -36,7 +36,7 @@ User.find_or_create_by!(
   work_email: "guybrush@lucasarts.com",
   personal_email: "guybrush@gmail.com",
   department: monkey_island,
-  job_title: "Pirate",
+  job_title: "Pirate"
 )
 
 webhook = Webhook.find_or_create_by!(url: "https://example.com", organisation:)

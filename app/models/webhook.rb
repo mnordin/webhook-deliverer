@@ -6,8 +6,8 @@ class Webhook < ApplicationRecord
   validates(
     :url,
     presence: true,
-    format: { with: /\Ahttps:\/\/.*\z/, message: "must be https protocol" },
-    unless: Proc.new { |webhook| localhost?(webhook.url) },
+    format: {with: /\Ahttps:\/\/.*\z/, message: "must be https protocol"},
+    unless: proc { |webhook| localhost?(webhook.url) }
   )
 
   private

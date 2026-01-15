@@ -6,20 +6,20 @@ FactoryBot.define do
     last_response { nil }
     url { "https://example.com/webhooks/profiles" }
     payload {
-       { type: "profile_created", data: { id: 1 } }.to_json
+      {type: "profile_created", data: {id: 1}}.to_json
     }
     webhook_subscription { build(:webhook_subscription, event: "profile_created") }
 
     trait :profile_updated do
       payload {
-        { type: "profile_updated", data: { id: 1 } }.to_json
+        {type: "profile_updated", data: {id: 1}}.to_json
       }
       webhook_subscription { build(:webhook_subscription, event: "profile_updated") }
     end
 
     trait :profile_archived do
       payload {
-        { type: "profile_archived", data: { id: 1 } }.to_json
+        {type: "profile_archived", data: {id: 1}}.to_json
       }
       webhook_subscription { build(:webhook_subscription, event: "profile_archived") }
     end

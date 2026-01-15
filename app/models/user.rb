@@ -11,23 +11,23 @@ class User < ApplicationRecord
   private
 
   def deliver_profile_created_webhook
-    if profile_created_subscription = find_webhook_subscription("profile_created")
+    if (profile_created_subscription = find_webhook_subscription("profile_created"))
       Webhooks::ProfileCreatedWebhookDeliveryJob.perform_later(self, profile_created_subscription)
     end
   end
 
   def deliver_profile_updated_webhook
-    if (self.previous_changes.keys - [ "updated_at" ]).any?
-      if profile_updated_subscription = find_webhook_subscription("profile_updated")
+    if (previous_changes.keys - ["updated_at"]).any?
+      if (profile_updated_subscription = find_webhook_subscription("profile_updated"))
         Webhooks::ProfileUpdatedWebhookDeliveryJob.perform_later(self, profile_updated_subscription)
       end
     end
   end
 
   def find_webhook_subscription(event_name)
-    WebhookSubscription.
-      joins(webhook: { organisation: :departments }).
-      where(departments: { id: department_id }).
-      find_by(event: event_name)
+    WebhookSubscription
+      .joins(webhook: {organisation: :departments})
+      .where(departments: {id: department_id})
+      .find_by(event: event_name)
   end
 end

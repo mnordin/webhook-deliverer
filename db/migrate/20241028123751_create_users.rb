@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration[7.2]
       t.string :personal_email
       t.string :job_title
       t.date :first_day_of_work
-      t.references :manager, null: true, foreign_key: { to_table: :users }, index: true
+      t.references :manager, null: true, foreign_key: {to_table: :users}, index: true
 
       t.timestamps
     end

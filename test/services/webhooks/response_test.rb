@@ -42,7 +42,7 @@ module Webhooks
 
     test "#body is delegated to the underlying response" do
       response_mock = Minitest::Mock.new
-      body = { id: 1 }.to_json
+      body = {id: 1}.to_json
       response_mock.expect(:body, body)
 
       response = Response.new(response_mock)
