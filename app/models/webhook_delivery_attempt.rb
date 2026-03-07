@@ -3,6 +3,14 @@ class WebhookDeliveryAttempt < ApplicationRecord
 
   validates :response_code, presence: true
 
+  def failure?
+    !success?
+  end
+
+  def success?
+    response_code.between?(200, 299)
+  end
+
   def status
     case response_code
     when 200..299
@@ -10,9 +18,5 @@ class WebhookDeliveryAttempt < ApplicationRecord
     else
       "failure"
     end
-  end
-
-  def failure?
-    status == "failure"
   end
 end

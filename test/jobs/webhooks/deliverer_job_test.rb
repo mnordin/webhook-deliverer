@@ -15,14 +15,15 @@ module Webhooks
 
         delivery.reload
         assert_equal 1, delivery.webhook_delivery_attempts.count
-        attempt = delivery.webhook_delivery_attempts.first
-        assert_equal "success", attempt.status
+        attempt = delivery.webhook_delivery_attempts.last
+        assert attempt.success?
         assert_equal 200, attempt.response_code
         assert_equal({test: "success"}.to_json, attempt.response)
+        assert delivery.success?
       end
     end
 
-    test "creates a successful attempt record for a previously failed delivery that is now successful" do
+    test "creates a successful attempt record for a previously failed attempt that is now successful" do
       delivery = create(:webhook_delivery, :failed)
       successful_response = Webhooks::Response.new(
         Response.new(status: 201, body: {status: "created"}.to_json)
@@ -35,9 +36,10 @@ module Webhooks
       delivery.reload
       assert_equal 2, delivery.webhook_delivery_attempts.count
       attempt = delivery.webhook_delivery_attempts.last
-      assert_equal "success", attempt.status
+      assert attempt.success?
       assert_equal 201, attempt.response_code
       assert_equal({status: "created"}.to_json, attempt.response)
+      assert delivery.success?
     end
 
     test "creates a failure attempt record and raises an exception for unsuccessful deliveries" do
@@ -53,12 +55,16 @@ module Webhooks
       end
 
       delivery.reload
-      assert_equal "Unsuccesful delivery for WebhookDelivery##{delivery.id}", exception.message
       assert_equal 1, delivery.webhook_delivery_attempts.count
-      attempt = delivery.webhook_delivery_attempts.first
-      assert_equal "failure", attempt.status
+      attempt = delivery.webhook_delivery_attempts.last
+      assert_equal(
+        "Unsuccessful delivery for WebhookDeliveryAttempt##{attempt.id}",
+        exception.message
+      )
+      assert attempt.failure?
       assert_equal 400, attempt.response_code
       assert_equal({test: "failures"}.to_json, attempt.response)
+      assert delivery.failure?
     end
   end
 end

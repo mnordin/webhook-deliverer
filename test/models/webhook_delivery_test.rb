@@ -44,44 +44,44 @@ class WebhookDeliveryTest < ActiveSupport::TestCase
 
   test "#success? returns true when the last attempt is successful" do
     webhook_delivery = create(:webhook_delivery)
-    create(:webhook_delivery_attempt, webhook_delivery:, status: :success)
+    create(:webhook_delivery_attempt, webhook_delivery:)
 
     assert webhook_delivery.success?
   end
 
   test "#success? returns false when the last attempt is a failure" do
     webhook_delivery = create(:webhook_delivery)
-    create(:webhook_delivery_attempt, webhook_delivery:, status: :failure)
+    create(:webhook_delivery_attempt, :failure, webhook_delivery:)
 
     assert_not webhook_delivery.success?
   end
 
   test "#success? returns true for a delivery that failed then succeeded" do
     webhook_delivery = create(:webhook_delivery)
-    create(:webhook_delivery_attempt, webhook_delivery:, status: :failure)
-    create(:webhook_delivery_attempt, webhook_delivery:, status: :success)
+    create(:webhook_delivery_attempt, :failure, webhook_delivery:)
+    create(:webhook_delivery_attempt, webhook_delivery:)
 
     assert webhook_delivery.success?
   end
 
   test "#failure? returns true when the last attempt is a failure" do
     webhook_delivery = create(:webhook_delivery)
-    create(:webhook_delivery_attempt, webhook_delivery:, status: :failure)
+    create(:webhook_delivery_attempt, :failure, webhook_delivery:)
 
     assert webhook_delivery.failure?
   end
 
   test "#failure? returns false when the last attempt is successful" do
     webhook_delivery = create(:webhook_delivery)
-    create(:webhook_delivery_attempt, webhook_delivery:, status: :success)
+    create(:webhook_delivery_attempt, webhook_delivery:)
 
     assert_not webhook_delivery.failure?
   end
 
   test "#failure? returns false for a delivery that failed then succeeded" do
     webhook_delivery = create(:webhook_delivery)
-    create(:webhook_delivery_attempt, webhook_delivery:, status: :failure)
-    create(:webhook_delivery_attempt, webhook_delivery:, status: :success)
+    create(:webhook_delivery_attempt, :failure, webhook_delivery:)
+    create(:webhook_delivery_attempt, webhook_delivery:)
 
     assert_not webhook_delivery.failure?
   end

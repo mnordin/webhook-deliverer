@@ -14,7 +14,7 @@ module Webhooks
       )
 
       if attempt.failure?
-        raise UnsuccessfulDelivery.new("Unsuccesful delivery for WebhookDeliveryAttempt##{attempt.id}")
+        raise UnsuccessfulDelivery.new("Unsuccessful delivery for WebhookDeliveryAttempt##{attempt.id}")
       end
     end
   end
