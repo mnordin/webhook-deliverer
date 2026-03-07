@@ -50,6 +50,7 @@ group :development do
 end
 
 group :test do
+  gem "capybara", "~> 3.40"
   gem "webmock", "~> 3.26"
   gem "minitest", "~> 6.0"
   gem "minitest-mock", "~> 5.2"

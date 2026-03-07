@@ -1,0 +1,14 @@
+<table <%= tag.attributes(html_attributes) %> class="items-center bg-transparent w-full border-collapse">
+  <thead>
+    <tr>
+      <% headers.each do |header| %>
+        <th class="cellheader-condensed"><%= header %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody class="bg-white mx-auto max-w-screen-xl">
+    <% rows.each do |row| %>
+      <%= row %>
+    <% end %>
+  </tbody>
+</table>
