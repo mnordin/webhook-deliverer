@@ -112,6 +112,7 @@ GEM
     debug (1.11.1)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    dotenv (3.2.0)
     drb (2.2.3)
     erb (6.0.2)
     erubi (1.13.1)
@@ -387,6 +388,7 @@ DEPENDENCIES
   brakeman
   capybara (~> 3.40)
   debug
+  dotenv (~> 3.2)
   factory_bot_rails (~> 6.5)
   faraday (~> 2.14)
   importmap-rails (~> 2.2)

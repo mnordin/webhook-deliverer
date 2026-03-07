@@ -42,6 +42,8 @@ group :development, :test do
   gem "standard", "~> 1.54"
 
   gem "factory_bot_rails", "~> 6.5"
+
+  gem "dotenv", "~> 3.2"
 end
 
 group :development do

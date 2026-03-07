@@ -3,7 +3,7 @@ require "test_helper"
 class WebhookSecretTest < ActiveSupport::TestCase
   test "it generates a shared secret unless explicitly set" do
     SecureRandom.stub(:uuid, "123-456-789") do
-      webhook_secret = WebhookSecret.new
+      webhook_secret = create(:webhook_secret)
 
       assert_equal "123-456-789", webhook_secret.secret
     end
@@ -11,7 +11,7 @@ class WebhookSecretTest < ActiveSupport::TestCase
 
   test "does not overwrite secret when explicitly setting it" do
     SecureRandom.stub(:uuid, "123-456-789") do
-      webhook_secret = WebhookSecret.new(secret: "foo-bar")
+      webhook_secret = create(:webhook_secret, secret: "foo-bar")
 
       assert_equal "foo-bar", webhook_secret.secret
     end
