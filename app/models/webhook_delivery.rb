@@ -1,6 +1,6 @@
 class WebhookDelivery < ApplicationRecord
   belongs_to :webhook_subscription
-  has_many :webhook_delivery_attempts
+  has_many :webhook_delivery_attempts, dependent: :destroy
 
   validates :url, presence: true
 
