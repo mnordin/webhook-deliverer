@@ -1,0 +1,14 @@
+<div class="block w-full overflow-x-auto">
+  <table class="items-center bg-transparent w-full border-collapse">
+    <thead>
+      <tr>
+        <%= headers %>
+      </tr>
+    </thead>
+    <tbody class="bg-white mx-auto max-w-screen-xl">
+      <% rows.each do |row| %>
+        <%= row %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
