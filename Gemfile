@@ -50,6 +50,7 @@ group :development do
 end
 
 group :test do
+  gem "capybara", "~> 3.40"
   gem "webmock", "~> 3.26"
   gem "minitest", "~> 6.0"
   gem "minitest-mock", "~> 5.2"
@@ -65,3 +66,5 @@ gem "importmap-rails", "~> 2.2"
 gem "propshaft", "~> 1.1"
 
 gem "stimulus-rails", "~> 1.3"
+
+gem "view_component", "~> 4.5"
