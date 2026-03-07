@@ -4,5 +4,7 @@ class WebhookDelivery < ApplicationRecord
 
   enum :status, {pending: 0, success: 1, failure: 2}
 
-  validates :status, :url, presence: true
+  def status
+    last_attempt&.status || "pending"
+  end
 end

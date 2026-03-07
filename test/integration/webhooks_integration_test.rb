@@ -60,19 +60,17 @@ class WebhooksIntegrationTest < ActionDispatch::IntegrationTest
       end
 
       webhook_delivery = WebhookDelivery.last!
-      assert_equal(
-        {
-          status: "success",
-          last_response_code: 200,
-          last_response: {status: "success"}.to_json,
-          attempts: 1,
-          url: expected_url
-        }.with_indifferent_access,
-        webhook_delivery.slice(:status, :last_response_code, :last_response, :attempts, :url)
-      )
+      assert_equal expected_url, webhook_delivery.url
       assert_equal expected_payload.to_json, webhook_delivery.payload
       assert_equal Time.zone.now, secret.reload.last_used_at
       assert_requested webhook_request
+
+      # Verify attempt record was created
+      assert_equal 1, webhook_delivery.webhook_delivery_attempts.count
+      attempt = webhook_delivery.webhook_delivery_attempts.first
+      assert_equal "success", attempt.status
+      assert_equal 200, attempt.response_code
+      assert_equal({status: "success"}.to_json, attempt.response)
     end
   end
 
@@ -134,19 +132,17 @@ class WebhooksIntegrationTest < ActionDispatch::IntegrationTest
       end
 
       webhook_delivery = WebhookDelivery.last!
-      assert_equal(
-        {
-          status: "success",
-          last_response_code: 202,
-          last_response: {updated: true}.to_json,
-          attempts: 1,
-          url: expected_url
-        }.with_indifferent_access,
-        webhook_delivery.slice(:status, :last_response_code, :last_response, :attempts, :url)
-      )
+      assert_equal expected_url, webhook_delivery.url
       assert_equal expected_payload.to_json, webhook_delivery.payload
       assert_equal Time.zone.now, secret.reload.last_used_at
       assert_requested webhook_request
+
+      # Verify attempt record was created
+      assert_equal 1, webhook_delivery.webhook_delivery_attempts.count
+      attempt = webhook_delivery.webhook_delivery_attempts.first
+      assert_equal "success", attempt.status
+      assert_equal 202, attempt.response_code
+      assert_equal({updated: true}.to_json, attempt.response)
     end
   end
 end
