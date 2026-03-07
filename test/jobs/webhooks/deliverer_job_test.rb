@@ -13,6 +13,7 @@ module Webhooks
       Webhooks::Deliverer.stub(:call, successful_response) do
         DelivererJob.new.perform(delivery)
 
+        delivery.reload
         assert_equal 1, delivery.webhook_delivery_attempts.count
         attempt = delivery.webhook_delivery_attempts.first
         assert_equal "success", attempt.status
@@ -31,8 +32,9 @@ module Webhooks
         DelivererJob.new.perform(delivery)
       end
 
-      assert_equal 1, delivery.webhook_delivery_attempts.count
-      attempt = delivery.webhook_delivery_attempts.first
+      delivery.reload
+      assert_equal 2, delivery.webhook_delivery_attempts.count
+      attempt = delivery.webhook_delivery_attempts.last
       assert_equal "success", attempt.status
       assert_equal 201, attempt.response_code
       assert_equal({status: "created"}.to_json, attempt.response)
@@ -50,6 +52,7 @@ module Webhooks
         end
       end
 
+      delivery.reload
       assert_equal "Unsuccesful delivery for WebhookDelivery##{delivery.id}", exception.message
       assert_equal 1, delivery.webhook_delivery_attempts.count
       attempt = delivery.webhook_delivery_attempts.first

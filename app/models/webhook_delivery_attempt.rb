@@ -11,4 +11,8 @@ class WebhookDeliveryAttempt < ApplicationRecord
       "failure"
     end
   end
+
+  def failure?
+    status == "failure"
+  end
 end

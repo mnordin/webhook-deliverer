@@ -8,17 +8,14 @@ module Webhooks
     def perform(webhook_delivery)
       response = Webhooks::Deliverer.call(webhook_delivery:)
 
-      # Create the attempt record
-      webhook_delivery.webhook_delivery_attempts.create!(
-        status: response.success? ? "success" : "failure",
+      attempt = webhook_delivery.webhook_delivery_attempts.create!(
         response_code: response.status,
         response: response.body
       )
 
-      # Re-enqueue the job for all delivery failures
-      return unless response.failure?
-
-      raise UnsuccessfulDelivery.new("Unsuccesful delivery for WebhookDelivery##{webhook_delivery.id}")
+      if attempt.failure?
+        raise UnsuccessfulDelivery.new("Unsuccesful delivery for WebhookDeliveryAttempt##{attempt.id}")
+      end
     end
   end
 end

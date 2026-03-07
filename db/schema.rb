@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_07_101351) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_07_104216) do
   create_table "departments", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name", null: false
@@ -161,12 +161,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_07_101351) do
   end
 
   create_table "webhook_deliveries", force: :cascade do |t|
-    t.integer "attempts", default: 0, null: false
     t.datetime "created_at", null: false
-    t.text "last_response"
-    t.integer "last_response_code"
     t.json "payload", null: false
-    t.integer "status", default: 0, null: false
     t.datetime "updated_at", null: false
     t.string "url", null: false
     t.integer "webhook_subscription_id", null: false
