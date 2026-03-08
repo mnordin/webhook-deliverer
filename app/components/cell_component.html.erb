@@ -1,1 +1,3 @@
-<td <%= tag.attributes(html_attributes) %>><%= content %></td>
+<%= tag.td(class: class_names(css_classes).presence, **html) do %>
+  <%= content %>
+<% end %>

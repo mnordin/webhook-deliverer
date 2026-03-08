@@ -14,4 +14,17 @@ class RowComponentTest < ViewComponent::TestCase
 
     assert_selector "tr[data-action=\"click->gallery#next\"]"
   end
+
+  test "allows passing in any css classes as a single string argument" do
+    render_inline RowComponent.new(class_names: "foo bar")
+
+    assert_selector "tr.foo.bar"
+  end
+
+  test "allows passing in conditional css classes" do
+    render_inline RowComponent.new(class_names: ["bar", {"foo": false, "zoom": true}])
+
+    assert_selector "tr.bar.zoom"
+    refute_selector "tr.foo"
+  end
 end

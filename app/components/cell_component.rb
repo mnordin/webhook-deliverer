@@ -1,21 +1,13 @@
 class CellComponent < ViewComponent::Base
-  VARIANTS = {
-    default: "cell-condensed",
-    mono: "cell-condensed font-mono"
-  }.freeze
-
-  def initialize(variant: :default, html: {})
-    @variant = variant
+  def initialize(class_names: [], html: {})
+    @class_names = Array(class_names)
     @html = html
   end
 
   private
+  attr_reader :html
 
-  def html_attributes
-    @html.merge(class: cell_classes)
-  end
-
-  def cell_classes
-    VARIANTS.fetch(@variant)
+  def css_classes
+    @class_names
   end
 end

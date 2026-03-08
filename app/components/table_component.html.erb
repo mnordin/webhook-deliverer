@@ -1,4 +1,4 @@
-<table <%= tag.attributes(html_attributes) %> class="items-center bg-transparent w-full border-collapse">
+<%= tag.table(class: class_names(css_classes).presence, **html) do %>
   <thead>
     <tr>
       <% headers.each do |header| %>
@@ -6,9 +6,9 @@
       <% end %>
     </tr>
   </thead>
-  <tbody class="bg-white mx-auto max-w-screen-xl">
+  <tbody>
     <% rows.each do |row| %>
       <%= row %>
     <% end %>
   </tbody>
-</table>
+<% end %>

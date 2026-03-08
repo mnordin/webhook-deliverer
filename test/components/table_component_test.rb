@@ -18,4 +18,17 @@ class TableComponentTest < ViewComponent::TestCase
 
     assert_selector "table[data-controller=\"foobar\"]"
   end
+
+  test "allows passing in any css classes as a single string argument" do
+    render_inline TableComponent.new(class_names: "foo bar")
+
+    assert_selector "table.foo.bar"
+  end
+
+  test "allows passing in conditional css classes" do
+    render_inline TableComponent.new(class_names: ["bar", {"foo": false, "zoom": true}])
+
+    assert_selector "table.bar.zoom"
+    refute_selector "table.foo"
+  end
 end

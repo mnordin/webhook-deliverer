@@ -1,5 +1,5 @@
-<tr <%= tag.attributes(html_attributes) %>>
+<%= tag.tr(class: class_names(css_classes).presence, **html) do %>
   <% cells.each do |cell| %>
     <%= cell %>
   <% end %>
-</tr>
+<% end %>

@@ -9,7 +9,7 @@
     </div>
 
     <div class="block w-full overflow-x-auto">
-      <%= render TableComponent.new do |table| %>
+      <%= render TableComponent.new(class_names: "items-center bg-white") do |table| %>
         <% table.with_header { "Id" } %>
         <% table.with_header { "Status" } %>
         <% table.with_header { "Url" } %>
@@ -19,14 +19,14 @@
         <% table.with_header { "Payload" } %>
 
         <% @webhook_deliveries.each do |delivery| %>
-          <% table.with_row do |row| %>
+          <% table.with_row(class_names: "cell-condensed") do |row| %>
             <% row.with_cell { delivery.id.to_s } %>
             <% row.with_cell { render StatusBadgeComponent.new(status: delivery.status) } %>
             <% row.with_cell { delivery.url } %>
             <% row.with_cell { delivery.attempts.to_s } %>
-            <% row.with_cell(variant: :mono) { delivery.last_response_code.to_s } %>
-            <% row.with_cell(variant: :mono) { delivery.last_response } %>
-            <% row.with_cell(variant: :mono) { delivery.payload } %>
+            <% row.with_cell(class_names: "font-mono") { delivery.last_response_code.to_s } %>
+            <% row.with_cell(class_names: "font-mono") { delivery.last_response } %>
+            <% row.with_cell(class_names: "font-mono") { delivery.payload } %>
           <% end %>
         <% end %>
       <% end %>
