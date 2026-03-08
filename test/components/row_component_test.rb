@@ -22,7 +22,7 @@ class RowComponentTest < ViewComponent::TestCase
   end
 
   test "allows passing in conditional css classes" do
-    render_inline RowComponent.new(class_names: ["bar", {"foo": false, "zoom": true}])
+    render_inline RowComponent.new(class_names: ["bar", {foo: false, zoom: true}])
 
     assert_selector "tr.bar.zoom"
     refute_selector "tr.foo"

@@ -20,7 +20,7 @@ class CellComponentTest < ViewComponent::TestCase
   end
 
   test "allows passing in conditional css classes" do
-    render_inline CellComponent.new(class_names: ["bar", {"foo": false, "zoom": true}])
+    render_inline CellComponent.new(class_names: ["bar", {foo: false, zoom: true}])
 
     assert_selector "td.bar.zoom"
     refute_selector "td.foo"

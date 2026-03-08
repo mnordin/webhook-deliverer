@@ -26,7 +26,7 @@ class TableComponentTest < ViewComponent::TestCase
   end
 
   test "allows passing in conditional css classes" do
-    render_inline TableComponent.new(class_names: ["bar", {"foo": false, "zoom": true}])
+    render_inline TableComponent.new(class_names: ["bar", {foo: false, zoom: true}])
 
     assert_selector "table.bar.zoom"
     refute_selector "table.foo"
