@@ -46,6 +46,6 @@ class WebhookDelivery < ApplicationRecord
   private
 
   def last_attempt
-    webhook_delivery_attempts.order(id: :desc).first
+    @last_attempt ||= webhook_delivery_attempts.order(id: :desc).first
   end
 end

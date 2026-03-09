@@ -10,7 +10,7 @@ class WebhookDeliveryAttemptTest < ActiveSupport::TestCase
     end
   end
 
-  test "is considered failure when assigned successful response codes" do
+  test "is considered failure when assigned unsuccessful response codes" do
     [400, 404, 500].each do |response_code|
       webhook_delivery_attempt = build(:webhook_delivery_attempt, response_code:)
 

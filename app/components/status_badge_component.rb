@@ -4,8 +4,8 @@ class StatusBadgeComponent < ViewComponent::Base
   end
 
   private
-  attr_reader :status
 
+  attr_reader :status
 
   def status_css_classes
     {
