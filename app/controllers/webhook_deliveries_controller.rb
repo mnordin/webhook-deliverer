@@ -5,5 +5,6 @@ class WebhookDeliveriesController < ApplicationController
 
   def show
     @webhook_delivery = WebhookDelivery.includes(:webhook_delivery_attempts).find(params[:id])
+    @webhook_delivery_attempts = @webhook_delivery.webhook_delivery_attempts.order(id: :desc)
   end
 end

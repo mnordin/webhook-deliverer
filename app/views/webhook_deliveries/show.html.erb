@@ -51,7 +51,7 @@
     <% table.with_header(class_names: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider") { "Created at" } %>
     <% table.with_header(class_names: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider") { "Response code" } %>
 
-    <% @webhook_delivery.webhook_delivery_attempts.each do |attempt| %>
+    <% @webhook_delivery_attempts.each do |attempt| %>
       <% table.with_row(class_names: "bg-white even:bg-gray-50") do |row| %>
         <% row.with_cell(class_names: "px-6 py-4 whitespace-nowrap") { render StatusBadgeComponent.new(status: attempt.status) } %>
         <% row.with_cell(class_names: "px-6 py-4 whitespace-nowrap", html: { title: attempt.created_at.to_s }) { time_ago_in_words(attempt.created_at) + " ago" } %>
