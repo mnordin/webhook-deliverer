@@ -19,7 +19,6 @@ module Webhooks
         assert attempt.success?
         assert_equal 200, attempt.response_code
         assert_equal({test: "success"}.to_json, attempt.response)
-        assert delivery.success?
       end
     end
 
@@ -39,7 +38,6 @@ module Webhooks
       assert attempt.success?
       assert_equal 201, attempt.response_code
       assert_equal({status: "created"}.to_json, attempt.response)
-      assert delivery.success?
     end
 
     test "creates a failure attempt record and raises an exception for unsuccessful deliveries" do
@@ -64,7 +62,6 @@ module Webhooks
       assert attempt.failure?
       assert_equal 400, attempt.response_code
       assert_equal({test: "failures"}.to_json, attempt.response)
-      assert delivery.failure?
     end
   end
 end
