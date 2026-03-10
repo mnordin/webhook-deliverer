@@ -31,4 +31,11 @@ class TableComponentTest < ViewComponent::TestCase
     assert_selector "table.bar.zoom"
     refute_selector "table.foo"
   end
+
+  test "allows passing in css classes explicitly for the tbody" do
+    render_inline TableComponent.new(tbody_class_names: ["class", {foo: true, bar: false}])
+
+    assert_selector "tbody.class.foo"
+    refute_selector "tbody.bar"
+  end
 end

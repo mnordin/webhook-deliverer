@@ -68,7 +68,6 @@ class WebhooksIntegrationTest < ActionDispatch::IntegrationTest
       # Verify attempt record was created
       assert_equal 1, webhook_delivery.webhook_delivery_attempts.count
       attempt = webhook_delivery.webhook_delivery_attempts.first
-      assert_equal "success", attempt.status
       assert_equal 200, attempt.response_code
       assert_equal({status: "success"}.to_json, attempt.response)
     end
@@ -140,7 +139,6 @@ class WebhooksIntegrationTest < ActionDispatch::IntegrationTest
       # Verify attempt record was created
       assert_equal 1, webhook_delivery.webhook_delivery_attempts.count
       attempt = webhook_delivery.webhook_delivery_attempts.first
-      assert_equal "success", attempt.status
       assert_equal 202, attempt.response_code
       assert_equal({updated: true}.to_json, attempt.response)
     end

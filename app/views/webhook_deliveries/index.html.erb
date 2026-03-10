@@ -1,35 +1,23 @@
-<div class="w-full mb-12 xl:mb-0 px-4 mx-auto">
-  <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-slate-100">
-    <div class="rounded-t mb-0 px-4 py-3 border-0">
-      <div class="flex flex-wrap items-center">
-        <div class="relative w-full px-4 max-w-full flex-grow flex-1">
-          <h1 class="font-semibold text-blueGray-700 text-4xl">Webhook deliveries</h1>
-        </div>
-      </div>
-    </div>
+<h1 class="text-4xl font-semibold mb-8">Webhook deliveries</h1>
 
-    <div class="block w-full overflow-x-auto">
-      <%= render TableComponent.new(class_names: "items-center bg-white") do |table| %>
-        <% table.with_header { "Id" } %>
-        <% table.with_header { "Status" } %>
-        <% table.with_header { "Url" } %>
-        <% table.with_header { "Attempts" } %>
-        <% table.with_header { "Response code" } %>
-        <% table.with_header { "Response" } %>
-        <% table.with_header { "Payload" } %>
+<div class="table-card">
+  <%= render TableComponent.new(class_names: "min-w-full divide-y divide-gray-200", tbody_class_names: "divide-y divide-gray-200") do |table| %>
+    <% table.with_header(class_names: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider") { "Id" } %>
+    <% table.with_header(class_names: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider") { "Status" } %>
+    <% table.with_header(class_names: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider") { "Url" } %>
+    <% table.with_header(class_names: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider") { "Attempts" } %>
+    <% table.with_header(class_names: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider") { "Response code" } %>
 
-        <% @webhook_deliveries.each do |delivery| %>
-          <% table.with_row(class_names: "cell-condensed") do |row| %>
-            <% row.with_cell { delivery.id.to_s } %>
-            <% row.with_cell { render StatusBadgeComponent.new(status: delivery.status) } %>
-            <% row.with_cell { delivery.url } %>
-            <% row.with_cell { delivery.attempts.to_s } %>
-            <% row.with_cell(class_names: "font-mono") { delivery.last_response_code.to_s } %>
-            <% row.with_cell(class_names: "font-mono") { delivery.last_response } %>
-            <% row.with_cell(class_names: "font-mono") { delivery.payload } %>
-          <% end %>
-        <% end %>
+    <% @webhook_deliveries.each do |delivery| %>
+      <% table.with_row(class_names: "bg-white even:bg-gray-50") do |row| %>
+        <% row.with_cell(class_names: "px-6 py-4 whitespace-nowrap") do
+          link_to(delivery.id, delivery, class: "text-blue-600 hover:text-blue-800 hover:underline")
+        end %>
+        <% row.with_cell(class_names: "px-6 py-4 whitespace-nowrap") { render ResponseCodeBadgeComponent.new(response_code: delivery.last_response_code) } %>
+        <% row.with_cell(class_names: "px-6 py-4 min-w-10 max-w-80 overflow-hidden") { delivery.url } %>
+        <% row.with_cell(class_names: "px-6 py-4 whitespace-nowrap") { delivery.attempts_count.to_s } %>
+        <% row.with_cell(class_names: "px-6 py-4 whitespace-nowrap font-mono") { delivery.last_response_code.to_s } %>
       <% end %>
-    </div>
-  </div>
+    <% end %>
+  <% end %>
 </div>

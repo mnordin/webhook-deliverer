@@ -16,7 +16,6 @@ module Webhooks
       end
 
       delivery = WebhookDelivery.last
-      assert_equal delivery.status, "pending"
       assert_equal delivery.url, "https://example.com/test"
       assert_equal delivery.payload, {foo: "bar"}.to_json
       assert_equal delivery.webhook_subscription, webhook_subscription

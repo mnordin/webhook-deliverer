@@ -2,13 +2,13 @@
   <thead>
     <tr>
       <% headers.each do |header| %>
-        <th class="cellheader-condensed"><%= header %></th>
+        <%= header %>
       <% end %>
     </tr>
   </thead>
-  <tbody>
+  <%= tag.tbody(class: class_names(tbody_css_classes).presence) do %>
     <% rows.each do |row| %>
       <%= row %>
     <% end %>
-  </tbody>
+  <% end %>
 <% end %>
