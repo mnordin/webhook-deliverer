@@ -43,6 +43,10 @@ class WebhookDelivery < ApplicationRecord
     self[:attempts_count] || webhook_delivery_attempts.count
   end
 
+  def identity
+    "webhook_delivery_#{id}"
+  end
+
   private
 
   def last_attempt

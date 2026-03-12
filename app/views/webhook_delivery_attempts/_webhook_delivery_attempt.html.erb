@@ -1,0 +1,5 @@
+<%= render RowComponent.new(class_names: "bg-white even:bg-gray-50") do |row| %>
+  <% row.with_cell(class_names: "px-6 py-4 whitespace-nowrap") { render ResponseCodeBadgeComponent.new(response_code: webhook_delivery_attempt.response_code) } %>
+  <% row.with_cell(class_names: "px-6 py-4 whitespace-nowrap", html: { title: webhook_delivery_attempt.created_at.to_s }) { time_ago_in_words(webhook_delivery_attempt.created_at) + " ago" } %>
+  <% row.with_cell(class_names: "px-6 py-4 whitespace-nowrap font-mono") { webhook_delivery_attempt.response_code.to_s } %>
+<% end %>

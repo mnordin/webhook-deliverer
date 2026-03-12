@@ -6,7 +6,7 @@
       <% end %>
     </tr>
   </thead>
-  <%= tag.tbody(class: class_names(tbody_css_classes).presence) do %>
+  <%= tag.tbody(class: class_names(tbody_css_classes).presence, **tbody_html) do %>
     <% rows.each do |row| %>
       <%= row %>
     <% end %>
