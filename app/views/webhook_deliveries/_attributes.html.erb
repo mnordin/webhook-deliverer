@@ -1,0 +1,40 @@
+<%# locals: (webhook_delivery:, webhook_delivery_attempt: nil) %>
+
+<dl>
+  <div class="flex px-6 py-4 border-b border-gray-200">
+    <dt class="w-48 text-sm font-medium text-gray-500 shrink-0">ID</dt>
+    <dd class="text-sm text-gray-900"><%= webhook_delivery.id %></dd>
+  </div>
+
+  <div class="flex px-6 py-4 border-b border-gray-200">
+    <dt class="w-48 text-sm font-medium text-gray-500 shrink-0">Status</dt>
+    <dd><%= render ResponseCodeBadgeComponent.new(response_code: webhook_delivery.last_response_code) %></dd>
+  </div>
+
+  <div class="flex px-6 py-4 border-b border-gray-200">
+    <dt class="w-48 text-sm font-medium text-gray-500 shrink-0">URL</dt>
+    <dd class="text-sm text-gray-900 break-all"><%= webhook_delivery.url %></dd>
+  </div>
+
+  <div class="flex px-6 py-4 border-b border-gray-200">
+    <dt class="w-48 text-sm font-medium text-gray-500 shrink-0">Payload</dt>
+    <dd class="text-sm font-mono text-gray-900 overflow-x-auto">
+      <pre class="whitespace-pre-wrap break-all"><%= webhook_delivery.payload %></pre>
+    </dd>
+  </div>
+
+  <div class="flex px-6 py-4 border-b border-gray-200">
+    <dt class="w-48 text-sm font-medium text-gray-500 shrink-0">Created at</dt>
+    <dd class="text-sm text-gray-900" title="<%= webhook_delivery.created_at %>"><%= time_ago_in_words(webhook_delivery.created_at) %> ago</dd>
+  </div>
+
+  <div class="flex px-6 py-4 border-b border-gray-200">
+    <dt class="w-48 text-sm font-medium text-gray-500 shrink-0">Last response</dt>
+    <dd class="text-sm font-mono text-gray-900"><%= webhook_delivery.last_response %></dd>
+  </div>
+
+  <div class="flex px-6 py-4 border-b border-gray-200">
+    <dt class="w-48 text-sm font-medium text-gray-500 shrink-0">Last response code</dt>
+    <dd class="text-sm font-mono text-gray-900"><%= webhook_delivery.last_response_code %></dd>
+  </div>
+</dl>

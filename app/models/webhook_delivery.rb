@@ -44,7 +44,7 @@ class WebhookDelivery < ApplicationRecord
   end
 
   def identity
-    "webhook_delivery_#{id}"
+    ActionView::RecordIdentifier.dom_id(self)
   end
 
   private
