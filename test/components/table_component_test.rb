@@ -38,4 +38,10 @@ class TableComponentTest < ViewComponent::TestCase
     assert_selector "tbody.class.foo"
     refute_selector "tbody.bar"
   end
+
+  test "allows passing in any html attributes explicitly for the tbody" do
+    render_inline TableComponent.new(tbody_html: {id: "table-body"})
+
+    assert_selector "tbody#table-body"
+  end
 end

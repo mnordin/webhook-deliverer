@@ -1,5 +1,10 @@
 development:
-  adapter: async
+  adapter: solid_cable
+  connects_to:
+    database:
+      writing: primary
+  polling_interval: <%= 1.second %>
+  message_retention: <%= 1.day %>
 
 test:
   adapter: test
