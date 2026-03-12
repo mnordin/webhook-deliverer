@@ -30,7 +30,9 @@
 
   <div class="flex px-6 py-4 border-b border-gray-200">
     <dt class="w-48 text-sm font-medium text-gray-500 shrink-0">Last response</dt>
-    <dd class="text-sm font-mono text-gray-900"><%= webhook_delivery.last_response %></dd>
+    <dd class="text-sm font-mono text-gray-900 overflow-x-auto">
+      <pre class="whitespace-pre-wrap break-all"><%= webhook_delivery.last_response %></pre>
+    </dd>
   </div>
 
   <div class="flex px-6 py-4 border-b border-gray-200">
