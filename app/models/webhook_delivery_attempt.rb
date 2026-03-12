@@ -16,8 +16,8 @@ class WebhookDeliveryAttempt < ApplicationRecord
   private
 
   def broadcast_later
-    broadcast_prepend_to(webhook_delivery.identity)
-    broadcast_update_to(
+    broadcast_prepend_later_to(webhook_delivery.identity)
+    broadcast_update_later_to(
       webhook_delivery.identity,
       target: ActionView::RecordIdentifier.dom_id(webhook_delivery, :attributes),
       partial: "webhook_deliveries/attributes",
