@@ -13,3 +13,11 @@ Everything is set up for asyncronous delivery and turbostream updates from deliv
 - **WebhookDelivery** - Represents a single delivery with a `payload` to a subscription's full URL. Has many attempts.
 - **WebhookDeliveryAttempt** - Records each HTTP request attempt. Success = 2xx response.
 - **WebhookSecret** - Encrypted secret token for HMAC signing webhook payloads. Auto-generated on create.
+
+## Future todos
+
+- Full usage of view components
+- Falcon and async/async-http-faraday to allow more concurrency. The webhook deliverer is bound to IO wait for response from the upstream server.
+  - Implement throttling per top domain to not DDOS them
+- Build web UI for user management, so we don't rely on `rails console` to trigger the webhook deliveries
+  - Use service objects to enqueue webhook delivery jobs, instead of model callbacks
