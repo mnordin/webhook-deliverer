@@ -15,7 +15,7 @@ class WebhookDeliveryTest < ActiveSupport::TestCase
 
     assert_no_queries do
       assert_equal 201, delivery.last_response_code
-      assert_equal 2, delivery.attempts
+      assert_equal 2, delivery.attempts_count
       assert_equal({created: true}.to_json, delivery.last_response)
     end
   end
@@ -54,11 +54,11 @@ class WebhookDeliveryTest < ActiveSupport::TestCase
     assert_nil webhook_delivery.last_response
   end
 
-  test "#attempts returns the count of delivery attempts" do
+  test "#attempts_count returns the count of delivery attempts" do
     webhook_delivery = create(:webhook_delivery)
     create(:webhook_delivery_attempt, webhook_delivery:)
     create(:webhook_delivery_attempt, webhook_delivery:)
 
-    assert_equal 2, webhook_delivery.attempts
+    assert_equal 2, webhook_delivery.attempts_count
   end
 end

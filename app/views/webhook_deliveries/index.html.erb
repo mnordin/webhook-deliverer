@@ -10,7 +10,7 @@
 
     <% @webhook_deliveries.each do |delivery| %>
       <% table.with_row(class_names: "bg-white even:bg-gray-50") do |row| %>
-        <% row.with_cell(class_names: "px-6 py-4 whitespace-nowrap") do
+        <%= row.with_cell(class_names: "px-6 py-4 whitespace-nowrap") do
           link_to(delivery.id, delivery, class: "text-blue-600 hover:text-blue-800 hover:underline")
         end %>
         <% row.with_cell(class_names: "px-6 py-4 whitespace-nowrap") { render ResponseCodeBadgeComponent.new(response_code: delivery.last_response_code) } %>
