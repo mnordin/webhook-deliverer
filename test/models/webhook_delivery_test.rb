@@ -20,6 +20,18 @@ class WebhookDeliveryTest < ActiveSupport::TestCase
     end
   end
 
+  test ".with_latest_attempt_summary works on deliveries without any attempts" do
+    delivery = create(:webhook_delivery)
+
+    deliveries = WebhookDelivery.with_latest_attempt_summary
+
+    assert_equal deliveries, [delivery]
+    delivery = deliveries.first
+    assert_equal delivery.attempts_count, 0
+    assert_nil delivery.last_response_code
+    assert_nil delivery.last_response
+  end
+
   test "is valid when url is set" do
     webhook_delivery = build(:webhook_delivery, url: nil)
 

@@ -6,18 +6,21 @@ class WebhookDelivery < ApplicationRecord
 
   scope :with_latest_attempt_summary, -> {
     joins(<<~SQL)
+      LEFT JOIN (
+        SELECT
+          webhook_delivery_id,
+          MAX(id) AS latest_attempt_id,
+          COUNT(*) AS attempts_count
+        FROM webhook_delivery_attempts
+        GROUP BY webhook_delivery_id
+      ) AS attempts_summary
+      ON attempts_summary.webhook_delivery_id = webhook_deliveries.id
       LEFT JOIN webhook_delivery_attempts AS latest_attempt
-        ON latest_attempt.id = (
-          SELECT MAX(id) FROM webhook_delivery_attempts
-          WHERE webhook_delivery_id = webhook_deliveries.id
-        )
+        ON latest_attempt.id = attempts_summary.latest_attempt_id
     SQL
       .select(<<~SQL)
         webhook_deliveries.*,
-        (
-          SELECT COUNT(*) FROM webhook_delivery_attempts
-          WHERE webhook_delivery_id = webhook_deliveries.id
-        ) AS attempts_count,
+        attempts_summary.attempts_count,
         latest_attempt.response_code AS last_response_code,
         latest_attempt.response AS last_response
       SQL
