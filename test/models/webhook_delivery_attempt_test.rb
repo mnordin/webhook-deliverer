@@ -22,7 +22,7 @@ class WebhookDeliveryAttemptTest < ActiveSupport::TestCase
   test "is valid when response_code is set" do
     webhook_delivery_attempt = build(:webhook_delivery_attempt, response_code: nil)
 
-    assert_not webhook_delivery_attempt.valid?
+    refute webhook_delivery_attempt.valid?
     assert_includes webhook_delivery_attempt.errors[:response_code], "can't be blank"
   end
 end

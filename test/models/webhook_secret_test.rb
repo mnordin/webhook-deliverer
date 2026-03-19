@@ -21,7 +21,7 @@ class WebhookSecretTest < ActiveSupport::TestCase
     active_secret = create(:webhook_secret, :active)
     second_active_secret = build(:webhook_secret, :active, webhook: active_secret.webhook)
 
-    assert_not second_active_secret.valid?
+    refute second_active_secret.valid?
     assert_includes second_active_secret.errors[:active], "has already been taken"
   end
 
