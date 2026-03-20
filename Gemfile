@@ -72,3 +72,5 @@ gem "view_component", "~> 4.5"
 gem "falcon-rails", "~> 0.2.4"
 
 gem "redis", "~> 5.4"
+
+gem "async-http-faraday", "~> 0.22.1"

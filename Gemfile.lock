@@ -114,6 +114,9 @@ GEM
       traces (~> 0.10)
     async-http-cache (0.4.6)
       async-http (~> 0.56)
+    async-http-faraday (0.22.1)
+      async-http (~> 0.42)
+      faraday
     async-job (0.11.1)
       async (~> 2.9)
       string-format (~> 0.2)
@@ -507,6 +510,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.16)
+  async-http-faraday (~> 0.22.1)
   bootsnap
   brakeman
   capybara (~> 3.40)

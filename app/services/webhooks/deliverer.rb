@@ -22,7 +22,7 @@ module Webhooks
 
     def connection
       Faraday.new(url:) do |connection|
-        connection.adapter :net_http
+        connection.adapter :async_http
         connection.headers["User-Agent"] = "Webhook Deliverer Client"
         connection.headers["Content-Type"] = "application/json"
         connection.headers["X-Timestamp"] = Time.zone.now.to_i.to_s
