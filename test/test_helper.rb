@@ -3,6 +3,7 @@ require_relative "../config/environment"
 require "rails/test_help"
 require "minitest/mock"
 require "webmock/minitest"
+require "console"
 
 module ActiveSupport
   class TestCase
@@ -13,6 +14,9 @@ module ActiveSupport
 
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
+
+    # Only log errors from Console gem (which Falcon uses)
+    Console.logger.level = :error
 
     # Add more helper methods to be used by all tests here...
   end
