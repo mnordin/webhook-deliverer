@@ -70,3 +70,5 @@ gem "stimulus-rails", "~> 1.3"
 gem "view_component", "~> 4.5"
 
 gem "falcon-rails", "~> 0.2.4"
+
+gem "redis", "~> 5.4"
