@@ -8,7 +8,7 @@
 
   <div class="flex px-6 py-4 border-b border-gray-200">
     <dt class="w-48 text-sm font-medium text-gray-500 shrink-0">Status</dt>
-    <dd><%= render ResponseCodeBadgeComponent.new(response_code: webhook_delivery.last_response_code) %></dd>
+    <dd><%= render ResponseCodeBadgeComponent.new(response_code: webhook_delivery.last_delivery_attempt.response_code) %></dd>
   </div>
 
   <div class="flex px-6 py-4 border-b border-gray-200">
@@ -31,12 +31,12 @@
   <div class="flex px-6 py-4 border-b border-gray-200">
     <dt class="w-48 text-sm font-medium text-gray-500 shrink-0">Last response</dt>
     <dd class="text-sm font-mono text-gray-900 overflow-x-auto">
-      <pre class="whitespace-pre-wrap break-all"><%= webhook_delivery.last_response %></pre>
+      <pre class="whitespace-pre-wrap break-all"><%= webhook_delivery.last_delivery_attempt.response %></pre>
     </dd>
   </div>
 
   <div class="flex px-6 py-4 border-b border-gray-200">
     <dt class="w-48 text-sm font-medium text-gray-500 shrink-0">Last response code</dt>
-    <dd class="text-sm font-mono text-gray-900"><%= webhook_delivery.last_response_code %></dd>
+    <dd class="text-sm font-mono text-gray-900"><%= webhook_delivery.last_delivery_attempt.response_code %></dd>
   </div>
 </dl>

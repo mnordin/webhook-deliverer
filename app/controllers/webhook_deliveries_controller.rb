@@ -1,6 +1,6 @@
 class WebhookDeliveriesController < ApplicationController
   def index
-    @webhook_deliveries = WebhookDelivery.with_latest_attempt_summary.order(id: :desc)
+    @webhook_deliveries = WebhookDelivery.includes(:webhook_delivery_attempts).order(id: :desc)
   end
 
   def show
