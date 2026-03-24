@@ -1,6 +1,6 @@
 class TableComponent < ViewComponent::Base
-  renders_many :headers, HeaderComponent
-  renders_many :rows, RowComponent
+  renders_many :headers, Table::HeaderComponent
+  renders_many :rows, Table::RowComponent
 
   def initialize(class_names: [], tbody_class_names: [], html: {}, tbody_html: {})
     @class_names = class_names
