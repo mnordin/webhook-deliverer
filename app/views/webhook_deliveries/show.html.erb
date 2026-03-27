@@ -4,7 +4,7 @@
 
 <div class="mb-8">
   <%= turbo_frame_tag dom_id(@webhook_delivery, :attributes) do %>
-    <%= render partial: "attributes", locals: {webhook_delivery: @webhook_delivery} %>
+    <%= render partial: "attributes", locals: { webhook_delivery: @webhook_delivery } %>
   <% end %>
 </div>
 
