@@ -72,4 +72,4 @@ gem "propshaft", "~> 1.3"
 
 gem "stimulus-rails", "~> 1.3"
 
-gem "view_component", "~> 4.10"
+gem "view_component", "~> 4.11"
