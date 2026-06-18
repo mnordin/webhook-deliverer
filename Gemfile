@@ -66,7 +66,7 @@ gem "faraday", "~> 2.14"
 gem "solid_queue", "~> 1.4"
 gem "solid_cable", "~> 3.0"
 
-gem "tailwindcss-rails", "~> 4.4"
+gem "tailwindcss-rails", "~> 4.6"
 gem "importmap-rails", "~> 2.2"
 gem "propshaft", "~> 1.3"
 
